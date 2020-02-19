@@ -14,6 +14,15 @@ function(
 ){
 
     let detectec_list_obj = [];
+    let remedes = [
+        'Insecticides - insects',
+        'Herbicides - plants',
+        'Rodenticides - rodents (rats and mice)',
+        'Bactericides - bacteria',
+        'Fungicides - fungi',
+        'Larvicides - larvae'
+    ]; 
+    let list_possible_desease = [];
 
     const video = document.getElementById('gum-local')
     const canvas = document.getElementById('canvas')
@@ -75,7 +84,18 @@ function(
         })
     }
 
+
+    let remedes = function( value ){
+
+    }
+
+
     $interval(function() {
         $scope.list_detected = detectec_list_obj;
+
+            // angular.forEach(values, function ($scope.list_detected, key) { 
+            //     $scope.names.push(value.name); 
+            // });
+
     }, 10);
 }]);
