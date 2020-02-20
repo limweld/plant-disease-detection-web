@@ -15,14 +15,15 @@ function(
 
     let detectec_list_obj = [];
     let remedes = [
-        'Insecticides - insects',
-        'Herbicides - plants',
-        'Rodenticides - rodents (rats and mice)',
-        'Bactericides - bacteria',
-        'Fungicides - fungi',
-        'Larvicides - larvae'
+        { id : '1', remede : 'Insecticides', description : 'Pamatay Peste'},
+        { id : '2', remede : 'Herbicides', description : 'Pamatay Damo'},
+        { id : '3', remede : 'Rodenticides', description : 'Pamatay Sira'},
+        { id : '4', remede : 'Bactericides', description : 'Pamatay Bacteria'},
+        { id : '5', remede : 'Fungicides', description : 'Pamatay Bun-i'},
+        { id : '6', remede : 'Larvicides', description : 'Pamatay sa Od'},
     ]; 
-    let list_possible_desease = [];
+
+    $scope.list_solution = [];
 
     const video = document.getElementById('gum-local')
     const canvas = document.getElementById('canvas')
@@ -85,17 +86,42 @@ function(
     }
 
 
-    let remedes = function( value ){
+    let add_recomendation = function( val_obj ){
+        let found = $scope.list_solution.some(el => el.id === val_obj.id);
+        if (!found) $scope.list_solution.push(val_obj);    
+    }
+
+    let cause_by = function( value ){
+        
+        if(value.class == "rat"){            
+            add_recomendation(remedes[3]);
+        }
+
+        if(value.class == "larva"){            
+            add_recomendation(remedes[6]);
+        }
+
+        if(value.class == "worm"){            
+            add_recomendation(remedes[1]);
+        }
+
+        if(value.class == "grass"){            
+            add_recomendation(remedes[2]);
+        }
+
+        if(value.class == "steam_yellow"){            
+            add_recomendation(remedes[4]);
+        }
 
     }
 
-
     $interval(function() {
+        
         $scope.list_detected = detectec_list_obj;
-
-            // angular.forEach(values, function ($scope.list_detected, key) { 
-            //     $scope.names.push(value.name); 
-            // });
+        $scope.list_solution = [];
+        angular.forEach( $scope.list_detected, function(value, key){
+            cause_by( value );
+        });
 
     }, 10);
 }]);

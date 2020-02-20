@@ -64,8 +64,13 @@
           <tr ng-repeat='x in list_remedes'>
           <td colspan=2><h3>{{ x.class }}</h3></td>
           </tr>
-          <tr ng-repeat='x in list_possible_desease'>          
-          <td colspan=2><h3>{{ x }}</h3></td>
+          <tr ng-repeat='x in list_solution'>          
+          <td colspan=2>    
+            <p><h4>{{ x.remede }}</h4></p>
+            <ul>
+              <li><h5>{{ x.description }}</h5></li>
+            </ul>
+          </td>
           </tr>
         </tbody>
       </table>
